@@ -102,8 +102,8 @@ local function listenForControl()
     CreateThread(function()
         listen = true
         while listen do
-            TriggerServerEvent('qb-shops:server:SetShopList')
             if IsControlJustPressed(0, 38) then -- E
+                TriggerServerEvent('qb-shops:server:SetShopList')
                 if inChips then
                     exports["qb-core"]:KeyPressed()
                     TriggerServerEvent("qb-shops:server:sellChips")
@@ -269,6 +269,7 @@ if not Config.UseTarget then
             if isPointInside then
                 inChips = true
                 exports["qb-core"]:DrawText(Lang:t("info.sell_chips"))
+                listenForControl()
             else
                 inChips = false
                 exports["qb-core"]:HideText()
